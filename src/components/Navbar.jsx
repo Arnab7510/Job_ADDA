@@ -17,10 +17,11 @@ const Navbar = () => {
         </ul>
 
       <div className="nav-auth">
-
+        
         <button className="login-btn">
           Login
         </button>
+        
 
         <button className="signup-btn">
           Sign Up

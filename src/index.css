@@ -9,9 +9,10 @@ body{
 }
 .header{
 
-  padding: 20px 50px;
+  padding: 10px 30px;
   top:0;
-
+  position: sticky;
+  background-color: chocolate;
   
 }
 
@@ -20,6 +21,7 @@ body{
   justify-content: space-between;
   align-items: center;
   top: 20px;
+  
   z-index: 1000;
 }
 .logo1{
