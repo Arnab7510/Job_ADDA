@@ -1,30 +1,99 @@
-import React from 'react'
+import React from "react";
+
 
 const Contact = () => {
   return (
     <section id="contact" className="contact">
-  <h1>Contact Us</h1>
-  <p>Have questions or opportunities? Reach out to us.</p>
 
-  <div className="contact-container">
-    <div className='contact-wrapper'>
-    <form className="contact-form">
-      <input type="text" placeholder="Your Name" required />
-      <input type="email" placeholder="Your Email" required />
-      <textarea placeholder="Your Message" rows="5" required ></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-    </div>
+    
+      <div className="contact-heading">
 
-    <div className="contact-info">
-      <h3>Get In Touch</h3>
-      <p>Email: ghosharnab436@gmail.com</p>
-      <p>Location: Memari,Purba Bardhaman, India</p>
-    </div>
+        <h1>Contact Us</h1>
 
-  </div>
-</section>
-  )
-}
+        <p>
+          Have questions, feedback, or job opportunities?
+          We'd love to hear from you.
+        </p>
 
-export default Contact
+      </div>
+
+  
+      <div className="contact-container">
+
+        
+        <div className="contact-wrapper">
+
+          <form className="contact-form">
+
+            <div className="input-box">
+              <input
+                type="text"
+                placeholder="Your Name"
+                required
+              />
+            </div>
+
+            <div className="input-box">
+              <input
+                type="email"
+                placeholder="Your Email"
+                required
+              />
+            </div>
+
+            <div className="input-box">
+              <textarea
+                placeholder="Your Message"
+                rows="6"
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" className="send-btn">
+              Send Message
+            </button>
+
+          </form>
+
+        </div>
+
+      
+        <div className="contact-info">
+
+          <h2>Get In Touch</h2>
+
+          <p>
+            📧 <strong>Email:</strong>
+            <br />
+            ghosharnab436@gmail.com
+          </p>
+
+          <p>
+            📍 <strong>Location:</strong>
+            <br />
+            Memari, Purba Bardhaman, India
+          </p>
+
+          <p>
+            📞 <strong>Phone:</strong>
+            <br />
+            +91 7001051436
+          </p>
+
+          <div className="social-links">
+
+            <a href="#">Facebook</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">GitHub</a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+  );
+};
+
+export default Contact;

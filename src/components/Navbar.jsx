@@ -1,38 +1,70 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
 
 const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <header className="header">
       <nav className="navbar">
-       
-        <h1 className="logo1">JOB_ADDA</h1>
 
-        <ul className="nav-links">
+  
+        <div className="logo">
+          <h1 className="logo1">JOB_ADDA</h1>
+        </div>
 
-          <li><a href="#home">Home</a></li>
-          <li><a href="#jobs">Find Job</a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#contact">Contact </a></li>
+        
+        <div
+          className={`hamburger ${menuOpen ? "active" : ""}`}
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        
+        <ul className={`nav-links ${menuOpen ? "show" : ""}`}>
+
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+
+          <li>
+            <Link to="/jobs">Find Job</Link>
+          </li>
+
+          <li>
+            <Link to="/about">About Us</Link>
+          </li>
+
+          <li>
+            <Link to="/contact">Contact</Link>
+          </li>
+
         </ul>
 
-      <div className="nav-auth">
-        
-        <button className="login-btn">
-          Login
-        </button>
-        
+      
+        <div className={`nav-auth ${menuOpen ? "show-auth" : ""}`}>
 
-        <button className="signup-btn">
-          Sign Up
-        </button>
+          <Link to="/login">
+            <button className="login-btn">
+              Login
+            </button>
+          </Link>
 
-      </div>
-        
-              
+          <Link to="/signup">
+            <button className="signup-btn">
+              Sign Up
+            </button>
+          </Link>
+
+        </div>
+
       </nav>
     </header>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
