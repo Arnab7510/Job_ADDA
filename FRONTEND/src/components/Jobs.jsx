@@ -48,7 +48,7 @@ const Jobs = () => {
       : jobsData.filter((job) => job.type === active);
 
   return (
-    <section id="jobs" className="jobs">
+    <section id="Jobs" className="jobs">
 
       <div className="jobs-heading">
         <h1>Latest Job Notifications</h1>
