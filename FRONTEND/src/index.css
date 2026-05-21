@@ -1183,6 +1183,153 @@ body{
 }
 
 
+.chatbot-container{
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 9999;
+}
+
+
+
+.chat-toggle{
+  width: 65px;
+  height: 65px;
+  border: none;
+  border-radius: 50%;
+  background: #06b6d4;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  transition: 0.3s;
+}
+
+.chat-toggle:hover{
+  transform: scale(1.1);
+  background: #0f172a;
+}
+
+
+
+.chat-box{
+  width: 340px;
+  height: 500px;
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  position: absolute;
+  bottom: 80px;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+  animation: popup 0.3s ease;
+}
+
+@keyframes popup{
+  from{
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+.chat-header{
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: white;
+  padding: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-header span{
+  cursor: pointer;
+  font-size: 18px;
+}
+
+
+
+.chat-messages{
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  background: #f8fafc;
+}
+
+.message{
+  max-width: 80%;
+  padding: 12px 15px;
+  margin-bottom: 12px;
+  border-radius: 15px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.bot{
+  background: #e2e8f0;
+  color: black;
+  align-self: flex-start;
+}
+
+.user{
+  background: #06b6d4;
+  color: white;
+  margin-left: auto;
+}
+
+
+.chat-input{
+  display: flex;
+  border-top: 1px solid #ddd;
+}
+
+.chat-input input{
+  flex: 1;
+  border: none;
+  padding: 15px;
+  outline: none;
+  font-size: 15px;
+}
+
+.chat-input button{
+  border: none;
+  padding: 0 20px;
+  background: #06b6d4;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.chat-input button:hover{
+  background: #0f172a;
+}
+
+
+
+@media(max-width: 500px){
+
+  .chat-box{
+    width: 300px;
+    height: 450px;
+  }
+
+  .chat-toggle{
+    width: 55px;
+    height: 55px;
+    font-size: 24px;
+  }
+
+}
+
+
 
 
 

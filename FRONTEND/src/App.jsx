@@ -7,6 +7,7 @@ import Contact from"./components/Contact";
 import Footer from "./components/Footer"
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import Chatbot from "./components/Chatbot";
 
 function App(){
   return <>
@@ -25,7 +26,7 @@ function App(){
       <Footer />
     </BrowserRouter>
    
-    
+    <Chatbot />
   
   </> 
 }
