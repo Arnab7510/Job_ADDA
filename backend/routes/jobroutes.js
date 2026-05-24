@@ -1,11 +1,12 @@
-const express = require('express');
-const router = express.Router();
-const jobController = require('../controllers/jobController');
+const express = require("express");
+const router =express.Router();
 
-router.post('/', jobController.createjob);
-router.get('/', jobController.viewjob);
-router.get('/:id', jobController.viewonejob);
-router.put('/:id', jobController.updatejob);
-router.delete('/:id', jobController.deletejob);
+const ctrl = require("../controllers/jobcontrollers");
+
+router.post("/",ctrl.addjobs);
+router.get("/",ctrl.viewjobs);
+router.get("/:id",ctrl.viewonejobs);
+router.put("/:id",ctrl.updatejobs);
+router.delete("/:id",ctrl.deletejobs);
 
 module.exports = router;

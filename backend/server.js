@@ -1,22 +1,19 @@
-const express = require('express');
-const cors = require('cors');
-const dotenv = require('dotenv');
-const connectDB = require('./config/db');
+const express = require("express");
+const cors = require("cors");
+const connectdb = require("./config/db")
+const dotenv = require("dotenv");
 
 dotenv.config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
-connectDB();
-
-app.get('/', (req, res) => {
-    res.send('Welcome to Job Adda API');
+connectdb();
+app.get("/",(req,res) =>{
+    res.send("api is working");
 });
-app.use('/api/jobs', require('./routes/jobroutes'));
-
-const port = process.env.PORT || 5700;
-
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+app.use('/api/jobs',require("./routes/jobroutes"));
+const port =process.env.PORT || 5500;
+app.listen(port,()=>{
+    console.log("server is running port 5500");
 });

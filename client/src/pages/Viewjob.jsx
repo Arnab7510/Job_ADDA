@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Jobcard = () => {
+const Viewjob = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const Jobcard = () => {
   )
 }
 
-export default Jobcard
+export default Viewjob

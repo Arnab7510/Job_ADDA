@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Addjobs = () => {
+const Footer = () => {
   return (
     <div>
-      
+      footer
     </div>
   )
 }
 
-export default Addjobs
+export default Footer
