@@ -5,7 +5,7 @@ const Jobcard = ({ job }) => {
   return (
     <div className='group bg-white rounded-2xl p-6 mt-6 border border-gray-200 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300'>
       
-      {/* Top Section */}
+    
       <div className='flex justify-between items-start mb-4'>
         <div>
           <h2 className='text-2xl font-bold text-gray-800 group-hover:text-blue-600 transition'>
@@ -22,7 +22,7 @@ const Jobcard = ({ job }) => {
         </span>
       </div>
 
-      {/* Salary */}
+      
       <div className='mb-5'>
         <h3 className='text-3xl font-extrabold text-green-600'>
           ₹ {job.salary}
@@ -33,7 +33,7 @@ const Jobcard = ({ job }) => {
         </p>
       </div>
 
-      {/* Buttons */}
+      
       <div className='flex gap-4'>
         <Link
           to={`/view/${job._id}`}
