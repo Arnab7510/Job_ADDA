@@ -5,6 +5,7 @@ import Footer from './components/Footer'
 import Home from './pages/Home'
 import Addjob from './pages/Addjob'
 import Viewjob from './pages/Viewjob'
+import Findjobs from './pages/Findjobs'
 import Editjob from './pages/Editjob'
 const App = () => {
   return <>
@@ -12,6 +13,7 @@ const App = () => {
   <Navbar/>
   <Routes>
     <Route path='/' element = {<Home/>}></Route>
+    <Route path='/find_jobs' element = {<Findjobs/>}></Route>
     <Route path='/add' element = {<Addjob/>}></Route>
     <Route path='/view/:id' element = {<Viewjob/>}></Route>
     <Route path='/edit/:id' element = {<Editjob/>}></Route>

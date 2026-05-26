@@ -24,6 +24,13 @@ const Navbar = () => {
           </Link>
 
           <Link
+            to="/find_jobs"
+            className="hover:text-blue-400 transition duration-300"
+          >
+            Find Jobs
+          </Link>
+
+          <Link
             to="/add"
             className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-lg transition duration-300"
           >
