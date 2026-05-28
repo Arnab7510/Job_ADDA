@@ -12,7 +12,10 @@ connectdb();
 app.get("/",(req,res) =>{
     res.send("api is working");
 });
-app.use('/api/jobs',require("./routes/jobroutes"));
+app.use("/api/jobs",require("./routes/jobroutes"));
+app.use("/api/users",require("./routes/authroutes"));
+
+
 const port =process.env.PORT || 5500;
 app.listen(port,()=>{
     console.log("server is running port 5500");
