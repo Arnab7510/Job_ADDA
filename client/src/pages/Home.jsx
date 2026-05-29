@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+
 const Home = () => {
   return (
     <section
@@ -9,7 +10,7 @@ const Home = () => {
     >
       <div className="max-w-7xl w-full grid lg:grid-cols-2 gap-12 items-center">
         
-        {/* Left Content */}
+       
         <div>
           <h1 className="text-5xl md:text-7xl font-extrabold leading-tight">
             One Platform <span className="text-blue-400">.</span>
@@ -23,7 +24,7 @@ const Home = () => {
             with <span className="font-bold text-white">JOB_ADDA</span>.
           </p>
 
-          {/* Buttons */}
+          
           <div className="flex flex-wrap gap-5 mt-8">
             <Link to="/find_jobs">
               <button className="bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-xl text-lg font-semibold shadow-lg transition duration-300 hover:scale-105">
@@ -40,7 +41,7 @@ const Home = () => {
 
         </div>
 
-        {/* Right Side Image */}
+        
         <div className="hidden lg:flex justify-center">
           <img
             src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
@@ -50,6 +51,7 @@ const Home = () => {
         </div>
       </div>
     </section>
+    
   );
 };
 
