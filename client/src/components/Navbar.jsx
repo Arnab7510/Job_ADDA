@@ -1,7 +1,15 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-
+import { Link,useNavigate } from 'react-router-dom'
+import {useAuth} from "../context/Authcontext"
 const Navbar = () => {
+  const {user,logout} = useAuth();
+
+  const navigate = useNavigate();
+
+  const h1 = ()=>{
+    logout();
+    navigate("/login");
+  }
   return (
     <nav className="bg-gray-900 text-white shadow-md">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -29,13 +37,14 @@ const Navbar = () => {
           >
             Find Jobs
           </Link>
-
+          {user?.role === "admin" && (
           <Link
             to="/add"
             className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-lg transition duration-300"
           >
             Add Job
           </Link>
+          )}
         </div>
       </div>
     </nav>
