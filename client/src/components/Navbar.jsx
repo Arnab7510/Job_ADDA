@@ -12,72 +12,97 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-blue-600 text-white shadow-md">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        
-        {/* Logo */}
-        <Link
-          to="/"
-          className="text-2xl font-bold tracking-wide hover:text-yellow-300 transition"
-        >
-          Job_ADDA
-        </Link>
+    <nav className="bg-slate-900 border-b border-slate-700 shadow-xl sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-6">
 
-        {/* Menu */}
-        <div className="flex items-center gap-6">
+        <div className="flex justify-between items-center h-20">
+
+          {/* Logo */}
           <Link
             to="/"
-            className="hover:text-yellow-300 transition font-medium"
+            className="flex items-center gap-2"
           >
-            Home
+            <div className="w-10 h-10 rounded-xl bg-orange-500 flex items-center justify-center text-white font-bold text-xl">
+              J
+            </div>
+
+            <div>
+              <h1 className="text-2xl font-bold text-white">
+                Job<span className="text-orange-500">ADDA</span>
+              </h1>
+            </div>
           </Link>
 
-          <Link
-            to="/find"
-            className="hover:text-yellow-300 transition font-medium"
-          >
-            Find Jobs
-          </Link>
+          {/* Menu */}
+          <div className="flex items-center gap-6">
 
-          {user?.role === "admin" && (
             <Link
-              to="/add"
-              className="hover:text-yellow-300 transition font-medium"
+              to="/"
+              className="text-gray-300 hover:text-orange-500 transition font-medium"
             >
-              Add Job
+              Home
             </Link>
-          )}
 
-          {!user ? (
-            <>
+            <Link
+              to="/find"
+              className="text-gray-300 hover:text-orange-500 transition font-medium"
+            >
+              Find Jobs
+            </Link>
+
+            {user?.role === "admin" && (
               <Link
-                to="/login"
-                className="px-4 py-2 rounded-lg bg-white text-blue-600 font-semibold hover:bg-gray-100 transition"
+                to="/add"
+                className="text-gray-300 hover:text-orange-500 transition font-medium"
               >
-                Login
+                Add Job
               </Link>
+            )}
 
-              <Link
-                to="/register"
-                className="px-4 py-2 rounded-lg bg-green-500 hover:bg-green-600 transition font-semibold"
-              >
-                Register
-              </Link>
-            </>
-          ) : (
-            <>
-              <div className="bg-blue-500 px-3 py-1 rounded-lg text-sm">
-                👤 {user.name} ({user.role})
-              </div>
+            {!user ? (
+              <>
+                <Link
+                  to="/login"
+                  className="px-5 py-2 rounded-xl border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white transition"
+                >
+                  Login
+                </Link>
 
-              <button
-                onClick={hl}
-                className="px-4 py-2 bg-red-500 rounded-lg hover:bg-red-600 transition font-semibold"
-              >
-                Logout
-              </button>
-            </>
-          )}
+                <Link
+                  to="/register"
+                  className="px-5 py-2 rounded-xl bg-orange-500 text-white hover:bg-orange-600 transition shadow-lg"
+                >
+                  Register
+                </Link>
+              </>
+            ) : (
+              <>
+                <div className="flex items-center gap-3 bg-slate-800 px-4 py-2 rounded-xl border border-slate-700">
+                  <div className="w-9 h-9 rounded-full bg-orange-500 flex items-center justify-center text-white font-bold">
+                    {user.name?.charAt(0).toUpperCase()}
+                  </div>
+
+                  <div>
+                    <p className="text-white text-sm font-semibold">
+                      {user.name}
+                    </p>
+
+                    <p className="text-xs text-orange-400 capitalize">
+                      {user.role}
+                    </p>
+                  </div>
+                </div>
+
+                <button
+                  onClick={hl}
+                  className="px-5 py-2 rounded-xl bg-red-500 text-white hover:bg-red-600 transition"
+                >
+                  Logout
+                </button>
+              </>
+            )}
+
+          </div>
         </div>
       </div>
     </nav>
