@@ -1,80 +1,88 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
-const Editjob = () => {
-
-  const { id } = useParams()
-  const navigate = useNavigate()
-
+import { useAuth } from "../context/AuthContext";
+function EditJob() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const {token} = useAuth();
   const [form, setForm] = useState({
-    title: '',
-    salary: '',
-    
-  })
+    title: "",
+    salary: "",
+  });
 
-  // Handle Change
-  const hc = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value
-    })
-  }
+  const [loading, setLoading] = useState(true);
 
-  // Fetch Single Job
-  const fetchJob = async () => {
+  const fetchSingleCourse = async () => {
     try {
-      const res = await axios.get(`http://localhost:5500/api/jobs/${id}`)
-      setForm(res.data)
+      const res = await axios.get(`http://localhost:5500/api/jobs/${id}`);
+
+      setForm({
+        title: res.data.data.title,
+        salary: res.data.data.salary,
+      });
+
+      setLoading(false);
     } catch (err) {
-      console.log(err)
+      console.log(err);
+      setLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
-    fetchJob()
-  }, [])
+    fetchSingleCourse();
+  }, [id]);
 
-  // Update Job
-  const hs = async (e) => {
-    e.preventDefault()
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
     try {
-      await axios.put(`http://localhost:5500/api/jobs/${id}`, form)
+      const res = await axios.put(
+        `http://localhost:5500/api/jobs/${id}`,
+        {
+          title: form.title,
+          salary: Number(form.salary),
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-      alert('Job Updated Successfully')
+      if (!res.data.success) {
+        alert(res.data.message || "Update failed");
+        return;
+      }
 
-      navigate('/find_jobs')
+      alert("Job Updated Successfully");
 
+      navigate("/find");
     } catch (err) {
-      console.log(err)
+      console.log(err);
+      alert("Update Failed");
     }
-  }
+  };
+
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-100 via-blue-50 to-indigo-100 flex justify-center items-center p-6">
+    <div className="flex justify-center mt-10 px-4">
+      <div className="bg-white shadow-xl rounded-xl p-8 w-full max-w-md">
+        <h2 className="text-3xl font-bold text-center mb-6">
+          Edit Job
+        </h2>
 
-      <div className="w-full max-w-2xl bg-white rounded-[35px] shadow-2xl overflow-hidden">
-
-        
-        <div className="bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-700 p-8 text-white">
-
-          <h2 className="text-4xl font-black">
-            Edit Job
-          </h2>
-
-          <p className="mt-3 text-blue-100">
-            Update your job information easily.
-          </p>
-
-        </div>
-
-        
-        <form onSubmit={hs} className="p-8 space-y-6">
-
-          
-          <div>
-            <label className="block text-gray-700 font-semibold mb-2">
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label className="block mb-2 font-medium">
               Job Title
             </label>
 
@@ -82,16 +90,14 @@ const Editjob = () => {
               type="text"
               name="title"
               value={form.title}
-              onChange={hc}
-              placeholder="Enter Job Title"
-              className="w-full border border-gray-300 rounded-2xl p-4 outline-none focus:ring-2 focus:ring-blue-500"
+              onChange={handleChange}
+              className="w-full border border-gray-300 p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
           </div>
 
-          
-          <div>
-            <label className="block text-gray-700 font-semibold mb-2">
+          <div className="mb-5">
+            <label className="block mb-2 font-medium">
               Salary
             </label>
 
@@ -99,40 +105,26 @@ const Editjob = () => {
               type="number"
               name="salary"
               value={form.salary}
-              onChange={hc}
-              placeholder="Enter Salary"
-              className="w-full border border-gray-300 rounded-2xl p-4 outline-none focus:ring-2 focus:ring-blue-500"
+              onChange={handleChange}
+              className="w-full border border-gray-300 p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
           </div>
 
-          
-
-          
-          <div className="flex gap-4 pt-4">
-
-            <button
-              type="submit"
-              className="flex-1 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white py-4 rounded-2xl font-bold text-lg shadow-lg transition duration-300"
-            >
-              Update Job
-            </button>
-
-            <button
-              type="button"
-              onClick={() => navigate('/find_jobs')}
-              className="flex-1 bg-gray-900 hover:bg-black text-white py-4 rounded-2xl font-bold text-lg transition duration-300"
-            >
-              Cancel
-            </button>
-
-          </div>
-
+          <button className="w-full bg-yellow-500 text-white py-3 rounded hover:bg-yellow-600">
+            Update Job  
+          </button>
         </form>
 
+        <Link
+          to="/find"
+          className="block text-center mt-4 text-blue-600 hover:underline"
+        >
+          Back To Home
+        </Link>
       </div>
     </div>
-  )
+  );
 }
 
-export default Editjob
+export default EditJob;

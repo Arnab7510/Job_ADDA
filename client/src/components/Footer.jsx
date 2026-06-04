@@ -37,7 +37,7 @@ const Footer = () => {
 
             <li>
               <Link
-                to="/find_jobs"
+                to="/find"
                 className="text-gray-400 hover:text-blue-400 transition"
               >
                 Jobs

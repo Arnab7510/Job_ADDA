@@ -26,13 +26,13 @@ const Home = () => {
 
           
           <div className="flex flex-wrap gap-5 mt-8">
-            <Link to="/find_jobs">
+            <Link to="/find">
               <button className="bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-xl text-lg font-semibold shadow-lg transition duration-300 hover:scale-105">
                 Explore Jobs
               </button>
             </Link>
 
-            <Link to="/signup">
+            <Link to="/register">
               <button className="border border-white hover:bg-white hover:text-black px-8 py-4 rounded-xl text-lg font-semibold transition duration-300 hover:scale-105">
                 Join Now
               </button>

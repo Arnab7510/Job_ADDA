@@ -1,35 +1,51 @@
-import React from 'react'
-import { useState } from 'react'
-import axios from 'axios'
+import React,{useState} from 'react';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import { useAuth } from '../context/AuthContext';
 const Addjob = () => {
-    const navigate = useNavigate();
-    const [form,setForm] = useState({
-        title:"",
-        salary:""
-    });
-    const hc= (e)=>{
-        setForm({...form,[e.target.name]:e.target.value,
-        })
-    }
-    const hs = async(e)=>{
-        e.preventDefault();
-        try {
-            await axios.post("http://localhost:5500/api/jobs", form);
-            alert("Job added successfully");
-            navigate('/');
-        } catch (err) {
-            console.log(err);
+  const navigate = useNavigate();
+  const {token} = useAuth();
+  const [form,setForm] = useState({
+    title:"",
+    salary:"",
+  });
+
+  const hc = (e)=> {
+    setForm({
+      ...form,
+      [e.target.name]:e.target.value,
+    })
+  }
+  const hs = async (e)=>{
+    e.preventDefault();
+    try {
+      const res = await axios.post(
+        "http://localhost:5500/api/jobs",
+        form,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
+      );
+      if (!res.data.success) {
+        alert(res.data.message || "Job add failed");
+        return;
+      }
+      alert("Job added");
+      navigate("/");
+    } catch(err) {
+      console.log(err);
     }
+  }
+
   return <>
-   <div className="flex justify-center items-center mt-10">
+  <div className="flex justify-center items-center mt-10">
 
       <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
 
         <h2 className="text-3xl font-bold text-center mb-6">
-          Add New Job
+          Add Job
         </h2>
 
         <form onSubmit={hs}>
@@ -67,7 +83,7 @@ const Addjob = () => {
           </div>
 
           <button className="w-full bg-blue-600 text-white py-3 rounded">
-            Add New Job
+            Add Job
           </button>
 
         </form>
@@ -75,6 +91,7 @@ const Addjob = () => {
       </div>
 
     </div>
+  
   </>
 }
 

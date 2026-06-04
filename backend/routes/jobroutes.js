@@ -45,7 +45,7 @@ router.put("/:id", authcheck, admincheck, ctrl.updatejob);
 router.delete("/:id", authcheck, admincheck, ctrl.deletejob);
 
 // public access
-router.get("/", ctrl.viewjob);
+router.get("/", ctrl.viewjobs);
 router.get("/:id", ctrl.viewonejob);
 
 module.exports = router;
