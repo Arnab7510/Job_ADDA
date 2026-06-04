@@ -2,43 +2,110 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-//register
-exports.register = async (req,res)=> {
-    try {
-        const {name,email,password,role} = req.body;
-        const olduser = await User.findOne({email});
-        const hashedpswd = await bcrypt.hash(password);
+// ================= REGISTER =================
+exports.register = async (req, res) => {
+  try {
+    const { name, email, password, role } = req.body;
 
-        const user = await User.create({
-            name,
-            email,
-            password:hashedpswd,
-            role
-        });
-        res.json({message:"register successfully",user});
-    } catch(err) {
-        console.error(err);
+    if (!name || !email || !password) {
+      return res.status(400).json({
+        success: false,
+        message: "Name, email and password are required",
+      });
     }
-}
 
-//login
-exports.login = async (req,res)=> {
-    try {
-        const {email,password} = req.body;
-        const olduser = await User.findOne({email});
-        const checkpassword = await bcrypt.compare(password,user.password);
+    const olduser = await User.findOne({ email });
 
-       const token = jwt.sign({
-        id:user._id,
-        role:user.role,
-       },
-       process.env.JWT_SECRET
-    
+    if (olduser) {
+      return res.status(400).json({
+        success: false,
+        message: "Email already registered",
+      });
+    }
+
+    const hashedpswd = await bcrypt.hash(password, 10);
+
+    const user = await User.create({
+      name,
+      email,
+      password: hashedpswd,
+      role: role === "admin" ? "admin" : "user",
+    });
+
+    res.status(201).json({
+      success: true,
+      message: "Register successfully",
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      },
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      success: false,
+      message: "Server error during register",
+    });
+  }
+};
+
+// ================= LOGIN =================
+exports.login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({
+        success: false,
+        message: "Email and password are required",
+      });
+    }
+
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid email or password",
+      });
+    }
+
+    const checkpassword = await bcrypt.compare(password, user.password);
+
+    if (!checkpassword) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid email or password",
+      });
+    }
+
+    const token = jwt.sign(
+      {
+        id: user._id,
+        role: user.role,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: "7d" }
     );
 
-       
-        res.json({message:"LOGIN successfully",token});
-    } catch(err) {
-        console.error(err);
-    }
-} 
+    res.status(200).json({
+      success: true,
+      message: "Login successfully",
+      token,
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      },
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      success: false,
+      message: "Server error during login",
+    });
+  }
+};

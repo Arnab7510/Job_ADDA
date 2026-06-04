@@ -1,41 +1,51 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
-const router =express.Router();
 
+const router = express.Router();
 const ctrl = require("../controllers/jobcontrollers");
 
-//auth check
+// ================= AUTH CHECK =================
 const authcheck = (req, res, next) => {
-    const token = req.headers.authorization?.split("")[1]; 
-    if (!token) {
-        return res.json({ message: "invalid token" });
-    }
-    try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.user = decoded;
-        next();
-    } catch (err) {
-        res.json({ message: "invalid token" });
-    }
-}
+  const authHeader = req.headers.authorization;
+  const token = authHeader && authHeader.split(" ")[1];
 
-//admin check
+  if (!token) {
+    return res.status(401).json({
+      success: false,
+      message: "No token found. Please login first",
+    });
+  }
 
-const admincheck = (req, res, next) => {
-    if (req.user.role !== "admin") {
-        return res.json({ message: "access denied" });
-    }
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded;
     next();
-}
+  } catch (err) {
+    return res.status(401).json({
+      success: false,
+      message: "Invalid or expired token",
+    });
+  }
+};
 
-//admin can add, update, delete jobs
-router.post("/",authcheck,admincheck,ctrl.addjobs);
+// ================= ADMIN CHECK =================
+const admincheck = (req, res, next) => {
+  if (req.user.role !== "admin") {
+    return res.status(403).json({
+      success: false,
+      message: "Only admin can access this feature",
+    });
+  }
+  next();
+};
 
-router.put("/:id",authcheck,admincheck,ctrl.updatejobs);
-router.delete("/:id",authcheck,admincheck,ctrl.deletejobs);
+// admin access
+router.post("/", authcheck, admincheck, ctrl.addjob);
+router.put("/:id", authcheck, admincheck, ctrl.updatejob);
+router.delete("/:id", authcheck, admincheck, ctrl.deletejob);
 
-//user can view jobs
-router.get("/",ctrl.viewjobs);
-router.get("/:id",ctrl.viewonejobs);
+// public access
+router.get("/", ctrl.viewjob);
+router.get("/:id", ctrl.viewonejob);
 
 module.exports = router;

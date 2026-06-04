@@ -7,6 +7,8 @@ import Addjob from './pages/Addjob'
 import Viewjob from './pages/Viewjob'
 import Findjobs from './pages/Findjobs'
 import Editjob from './pages/Editjob'
+import Login from './pages/Login'
+import Register from './pages/Register'
 const App = () => {
   return <>
   <BrowserRouter>
@@ -17,6 +19,8 @@ const App = () => {
     <Route path='/add' element = {<Addjob/>}></Route>
     <Route path='/view/:id' element = {<Viewjob/>}></Route>
     <Route path='/edit/:id' element = {<Editjob/>}></Route>
+    <Route path="/signup" element={<Register/>} />
+    <Route path="/login" element={<Login />} />
   </Routes>
   <Footer/>
   </BrowserRouter>
