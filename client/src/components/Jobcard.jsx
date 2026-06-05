@@ -26,9 +26,16 @@ const Jobcard = ({ job }) => {
             </p>
           </div>
 
-          <span className="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-xs font-semibold border border-green-500/30">
-            Hiring
+        <span className="flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/20 border border-green-500/30 text-green-400 text-xs font-bold shadow-lg">
+
+          <span className="relative flex h-3 w-3">
+            <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 animate-ping"></span>
+            <span className="relative inline-flex h-3 w-3 rounded-full bg-green-400"></span>
           </span>
+
+         Hiring Now
+
+        </span>
 
         </div>
 
