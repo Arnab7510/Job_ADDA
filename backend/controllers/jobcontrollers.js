@@ -7,7 +7,7 @@ exports.addjob = async (req, res) => {
 
   try {
 
-    const { title,  salary } = req.body;
+    const { title, salary, company, location, description } = req.body;
 
     // validation
 
@@ -20,6 +20,9 @@ exports.addjob = async (req, res) => {
     const newjob = new Job({
       title,
       salary,
+      company,
+      location,
+      description
     });
 
     // save database
@@ -107,13 +110,16 @@ exports.updatejob = async (req, res) => {
 
   try {
 
-    const { title, salary } = req.body;
+    const { title, salary, company, location, description } = req.body;
 
     const updatedjob = await Job.findByIdAndUpdate(
       req.params.id,
       {
         title,
         salary,
+        company,
+        location,
+        description
       },
       {
         new: true,

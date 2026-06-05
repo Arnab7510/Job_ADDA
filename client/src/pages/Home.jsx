@@ -49,34 +49,6 @@ const Home = () => {
 
             {/* Stats */}
             <div className="grid grid-cols-3 gap-4 mt-12">
-
-              <div className="bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl p-5 text-center">
-                <h3 className="text-3xl font-bold text-orange-500">
-                  5000+
-                </h3>
-                <p className="text-gray-400 text-sm mt-1">
-                  Jobs
-                </p>
-              </div>
-
-              <div className="bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl p-5 text-center">
-                <h3 className="text-3xl font-bold text-orange-500">
-                  1000+
-                </h3>
-                <p className="text-gray-400 text-sm mt-1">
-                  Companies
-                </p>
-              </div>
-
-              <div className="bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl p-5 text-center">
-                <h3 className="text-3xl font-bold text-orange-500">
-                  10000+
-                </h3>
-                <p className="text-gray-400 text-sm mt-1">
-                  Users
-                </p>
-              </div>
-
             </div>
 
           </div>

@@ -8,6 +8,9 @@ const Addjob = () => {
   const [form,setForm] = useState({
     title:"",
     salary:"",
+    company:"",
+    location:"",
+    description:"",
   });
 
   const hc = (e)=> {
@@ -81,6 +84,54 @@ const Addjob = () => {
             />
 
           </div>
+
+          <div className="mb-4">
+
+            <label className="block mb-2">
+              Company Name
+            </label>
+
+            <input
+              type="text"
+              name="company"
+              onChange={hc}
+              className="w-full border p-3 rounded"
+              required
+            />
+
+          </div>
+
+          <div className="mb-4">
+
+            <label className="block mb-2">
+              Job Location
+            </label>
+
+            <input
+              type="text"
+              name="location"
+              onChange={hc}
+              className="w-full border p-3 rounded"
+              required
+            />
+
+          </div>
+
+          <div className="mb-4">
+
+            <label className="block mb-2">
+              Job Description
+            </label>
+
+            <textarea
+              name="description"
+              onChange={hc}
+              className="w-full border p-3 rounded"
+              required
+            />
+
+          </div>
+              
 
           <button className="w-full bg-blue-600 text-white py-3 rounded">
             Add Job

@@ -11,6 +11,18 @@ const jobschema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    company: {
+      type: String,
+      required: true,
+    },
+    location: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,

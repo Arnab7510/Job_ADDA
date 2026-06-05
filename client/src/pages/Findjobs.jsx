@@ -21,36 +21,68 @@ const Findjobs = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-100 py-8 px-4">
-      
-      {/* Header */}
-      <div className="max-w-7xl mx-auto mb-8">
-        <h1 className="text-4xl font-bold text-gray-800 mb-2">
-          Find Your Dream Job
-        </h1>
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 text-white">
 
+      <div className="max-w-7xl mx-auto px-6 py-10">
+
+        {/* Header */}
+        <div className="text-center mb-10">
+
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/30 mb-5">
+            💼 Explore Opportunities
+          </span>
+
+          <h1 className="text-5xl font-extrabold mb-4">
+            Find Your Dream Job
+          </h1>
+
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            Browse thousands of opportunities from top companies
+            and take the next step in your career.
+          </p>
+
+        </div>
+
+        {/* User Info */}
         {user && (
-          <div className="inline-block bg-blue-100 text-blue-700 px-4 py-2 rounded-lg">
-            Logged in as: <span className="font-semibold">{user.role}</span>
+          <div className="flex justify-center mb-8">
+            <div className="bg-white/10 backdrop-blur-md border border-white/10 px-5 py-3 rounded-xl">
+              Logged in as:
+              <span className="ml-2 text-orange-400 font-semibold capitalize">
+                {user.role}
+              </span>
+            </div>
           </div>
         )}
+
+        
+
+        
+
+        {/* Jobs Grid */}
+        {jobs.length > 0 ? (
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {jobs.map((job) => (
+              <Jobcard
+                key={job._id}
+                job={job}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-20">
+            <h2 className="text-2xl font-semibold text-gray-400">
+              No Jobs Available
+            </h2>
+
+            <p className="text-gray-500 mt-3">
+              Check back later for new opportunities.
+            </p>
+          </div>
+        )}
+
       </div>
 
-      {/* Job List */}
-      <div className="max-w-7xl mx-auto grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {jobs.length > 0 ? (
-          jobs.map((job) => (
-            <Jobcard
-              key={job._id}
-              job={job}
-            />
-          ))
-        ) : (
-          <div className="col-span-full text-center text-gray-500 text-lg">
-            No jobs available.
-          </div>
-        )}
-      </div>
     </div>
   );
 };

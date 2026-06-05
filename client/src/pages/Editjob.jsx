@@ -10,6 +10,9 @@ function EditJob() {
   const [form, setForm] = useState({
     title: "",
     salary: "",
+    company: "",
+    location: "",
+    description: "",
   });
 
   const [loading, setLoading] = useState(true);
@@ -21,6 +24,9 @@ function EditJob() {
       setForm({
         title: res.data.data.title,
         salary: res.data.data.salary,
+        company: res.data.data.company,
+        location: res.data.data.location,
+        description: res.data.data.description,
       });
 
       setLoading(false);
@@ -50,6 +56,9 @@ function EditJob() {
         {
           title: form.title,
           salary: Number(form.salary),
+          company: form.company,
+          location: form.location,
+          description: form.description,
         },
         {
           headers: {
@@ -110,6 +119,56 @@ function EditJob() {
               required
             />
           </div>
+
+          <div className="mb-5">
+            <label className="block mb-2 font-medium">
+              Company
+            </label>
+
+            <input
+              type="text"
+              name="company"
+              value={form.company}
+              onChange={handleChange}
+              className="w-full border border-gray-300 p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </div>
+
+          <div className="mb-5">
+            <label className="block mb-2 font-medium">
+              Location
+            </label>
+
+            <input
+              type="text"
+              name="location"
+              value={form.location}
+              onChange={handleChange}
+              className="w-full border border-gray-300 p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </div>
+
+          <div className="mb-5">
+            <label className="block mb-2 font-medium">
+              Description
+            </label>
+
+            <input
+              type="text"
+              name="description"
+              value={form.description}
+              onChange={handleChange}
+              className="w-full border border-gray-300 p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </div>
+
+
+
+
+
 
           <button className="w-full bg-yellow-500 text-white py-3 rounded hover:bg-yellow-600">
             Update Job  
