@@ -47,7 +47,7 @@ function Viewjob() {
     <div className="min-h-screen bg-gray-100 py-10 px-4">
       <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden">
 
-        {/* Header */}
+        
         <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 p-8 text-white">
           <h1 className="text-4xl font-bold">{job.title}</h1>
 
@@ -66,10 +66,10 @@ function Viewjob() {
           </div>
         </div>
 
-        {/* Content */}
+        
         <div className="p-8">
 
-          {/* Salary Card */}
+          
           <div className="bg-green-50 border border-green-200 rounded-2xl p-6 mb-6">
             <h3 className="text-lg text-gray-600 mb-2">
               Salary
@@ -80,7 +80,7 @@ function Viewjob() {
             </p>
           </div>
 
-          {/* Job Details */}
+          
           <div className="grid md:grid-cols-2 gap-6">
 
             <div className="bg-gray-50 p-5 rounded-xl">
@@ -124,7 +124,7 @@ function Viewjob() {
             </div>
           </div>
 
-          {/* Description */}
+          
           <div className="mt-8">
             <h3 className="text-2xl font-bold mb-4">
               Job Description
@@ -138,7 +138,7 @@ function Viewjob() {
             </div>
           </div>
 
-          {/* Buttons */}
+          
           <div className="flex flex-wrap gap-4 mt-8">
             <Link
               to={`/edit/${job._id}`}

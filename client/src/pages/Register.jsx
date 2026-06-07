@@ -46,7 +46,7 @@ function Register() {
       
       <div className="w-full max-w-lg bg-white/10 backdrop-blur-lg border border-white/20 rounded-3xl shadow-2xl p-8">
 
-        {/* Header */}
+        
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-white">
             Create Account
@@ -57,10 +57,10 @@ function Register() {
           </p>
         </div>
 
-        {/* Form */}
+        
         <form onSubmit={handleSubmit} className="space-y-5">
 
-          {/* Name */}
+          
           <div>
             <label className="block text-white mb-2 font-medium">
               Full Name
@@ -77,7 +77,7 @@ function Register() {
             />
           </div>
 
-          {/* Email */}
+          
           <div>
             <label className="block text-white mb-2 font-medium">
               Email Address
@@ -94,7 +94,7 @@ function Register() {
             />
           </div>
 
-          {/* Password */}
+          
           <div>
             <label className="block text-white mb-2 font-medium">
               Password
@@ -121,7 +121,7 @@ function Register() {
             </div>
           </div>
 
-          {/* Role Selection */}
+          
           <div>
             <label className="block text-white mb-3 font-medium">
               Select Role
@@ -129,7 +129,7 @@ function Register() {
 
             <div className="grid grid-cols-2 gap-4">
 
-              {/* User */}
+              
               <label
                 className={`cursor-pointer rounded-xl p-4 text-center font-semibold border transition-all duration-300 ${
                   form.role === "user"
@@ -148,7 +148,7 @@ function Register() {
                 👨‍💼 User
               </label>
 
-              {/* Admin */}
+              
               <label
                 className={`cursor-pointer rounded-xl p-4 text-center font-semibold border transition-all duration-300 ${
                   form.role === "admin"
@@ -170,7 +170,7 @@ function Register() {
             </div>
           </div>
 
-          {/* Submit Button */}
+          
           <button
             type="submit"
             className="w-full py-3 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold text-lg shadow-lg transition duration-300 hover:scale-[1.02]"
@@ -179,7 +179,7 @@ function Register() {
           </button>
         </form>
 
-        {/* Footer */}
+        
         <div className="mt-6 text-center">
           <p className="text-gray-300">
             Already have an account?{" "}
