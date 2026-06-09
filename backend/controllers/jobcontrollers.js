@@ -8,6 +8,7 @@ exports.addjob = async (req, res) => {
   try {
 
     const { title, salary, company, location, description } = req.body;
+    const image = req.file ? req.file.filename:"";
 
     // validation
 
@@ -22,7 +23,8 @@ exports.addjob = async (req, res) => {
       salary,
       company,
       location,
-      description
+      description,
+      image
     });
 
     // save database
@@ -111,16 +113,20 @@ exports.updatejob = async (req, res) => {
   try {
 
     const { title, salary, company, location, description } = req.body;
+    let updateddata = {
+      title,
+      salary,
+      company,
+      location,
+      description
+    };
+    if (req.file) {
+      updateddata.image = req.file.filename;
+    }
 
     const updatedjob = await Job.findByIdAndUpdate(
       req.params.id,
-      {
-        title,
-        salary,
-        company,
-        location,
-        description
-      },
+      updateddata,
       {
         new: true,
       }
